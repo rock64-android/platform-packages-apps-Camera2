@@ -7,6 +7,8 @@
 }
 
 -keep class com.android.camera.CameraActivity {
+  public int getResultCode();
+  public android.content.Intent getResultData();
   public boolean isRecording();
   public long getAutoFocusTime();
   public long getShutterLag();

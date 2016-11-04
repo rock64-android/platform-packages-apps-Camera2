@@ -63,6 +63,7 @@ public class CameraTest extends InstrumentationTestCase {
                 new ArrayList<WeakReference<Activity>>();
         for (int i = 0; i < TEST_COUNT; i++) {
             Activity activity = getInstrumentation().startActivitySync(intent);
+            Thread.sleep(3000);
             refs.add(new WeakReference<Activity>(activity));
             activity.finish();
             getInstrumentation().waitForIdleSync();

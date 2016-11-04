@@ -79,8 +79,9 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
     public void testNoExtraOutput() throws Exception {
         setActivityIntent(mIntent);
         getActivity();
-
+        Thread.sleep(5000);
         recordVideo();
+        Thread.sleep(3000);
         pressDone();
 
         Intent resultData = getActivity().getResultData();
@@ -97,8 +98,9 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         mIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         setActivityIntent(mIntent);
         getActivity();
-
+        Thread.sleep(5000);
         recordVideo();
+        Thread.sleep(3000);
         pressDone();
 
         verify(getActivity(), uri);
@@ -109,6 +111,7 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         setActivityIntent(mIntent);
         getActivity();
 
+        Thread.sleep(5000);
         pressCancel();
 
         assertTrue(getActivity().isFinishing());
@@ -120,7 +123,9 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         setActivityIntent(mIntent);
         getActivity();
 
+        Thread.sleep(5000);
         recordVideo();
+        Thread.sleep(3000);
         pressCancel();
 
         assertTrue(getActivity().isFinishing());
@@ -139,6 +144,7 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         setActivityIntent(mIntent);
         getActivity();
 
+        Thread.sleep(5000);
         recordVideo(5000);
         pressDone();
 
@@ -160,7 +166,9 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         setActivityIntent(mIntent);
         getActivity();
 
+        Thread.sleep(5000);
         recordVideo(5000);
+        Thread.sleep(3000);
         pressDone();
 
         int duration = verify(getActivity(), uri);
@@ -170,7 +178,7 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         Log.v(TAG, "Video length is " + duration + " ms.");
         assertTrue(duration  < (durationLimit + 1) * 1000);
     }
-
+/*
     @LargeTest
     public void testExtraVideoQuality() throws Exception {
         mFile = new File(Environment.getExternalStorageDirectory(), "video.tmp");
@@ -182,7 +190,9 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         setActivityIntent(mIntent);
         getActivity();
 
+        Thread.sleep(5000);
         recordVideo();
+        Thread.sleep(3000);
         pressDone();
 
         verify(getActivity(), uri);
@@ -194,13 +204,15 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         setActivityIntent(mIntent);
         getActivity();
 
+        Thread.sleep(3000);
         recordVideo();
+        Thread.sleep(3000);
         pressDone();
 
         verify(getActivity(), uri);
         assertTrue(mFile.length() <= mFile2.length());
     }
-
+*/
     // Verify result code, result data, and the duration.
     private int verify(CameraActivity activity, Uri uri) throws Exception {
         assertTrue(activity.isFinishing());
@@ -242,7 +254,7 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                getActivity().findViewById(R.id.btn_done).performClick();
+                getActivity().findViewById(R.id.done_button).performClick();
             }
         });
     }
@@ -251,7 +263,7 @@ public class VideoCaptureIntentTest extends ActivityInstrumentationTestCase2 <Ca
         getInstrumentation().runOnMainSync(new Runnable() {
             @Override
             public void run() {
-                getActivity().findViewById(R.id.btn_cancel).performClick();
+                getActivity().findViewById(R.id.cancel_button).performClick();
             }
         });
     }
